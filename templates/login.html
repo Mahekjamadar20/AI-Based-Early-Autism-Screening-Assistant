@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI-Based Early Autism Screening Assistant – Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-shell">
+    <div class="brand-hero">
+        <div class="brand-pill">
+            <span> AI Screening</span>
+            <span>Secure autism risk assistant</span>
+        </div>
+        <div class="brand-title">AI-Based Early Autism Screening Assistant</div>
+        
+    </div>
+
+    <div class="layout-two">
+        <div class="card">
+            <h2>Login</h2>
+            <p class="muted">Enter your account details to continue.</p>
+            <form method="POST" action="{{ url_for('login') }}">
+                <div>
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required>
+                </div>
+                <div class="button-row">
+                    <button type="submit">Login</button>
+                    <a class="btn btn-secondary" href="{{ url_for('register') }}">Create account</a>
+                </div>
+                {% if error %}
+                    <p class="muted" style="color:#b91c1c;margin-top:8px;">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="card-soft">
+            <h3 style="margin-bottom:4px;">Why create an account?</h3>
+            <ul class="info-list">
+                <li>Save basic details to reuse during this session.</li>
+                <li>Access a structured, step‑by‑step screening flow.</li>
+                <li>Get a clear Yes/No screening result with confidence score.</li>
+            </ul>
+            <p class="footer-note">
+                This tool is a screening aid only and does not replace a clinical diagnosis.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
