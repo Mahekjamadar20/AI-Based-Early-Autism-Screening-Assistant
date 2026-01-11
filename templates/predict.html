@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autism Prediction – Screening</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-shell">
+    <div class="brand-hero">
+        <div class="brand-pill">
+            <span>Step 2</span>
+            <span>Behavioural screening</span>
+        </div>
+        <div class="brand-title">Autism Screening Form</div>
+        <div class="brand-subtitle">
+           
+        </div>
+    </div>
+
+    <div class="layout-two">
+        <div class="card">
+            <h2>Behavioural Questions</h2>
+            <p class="muted">Select <strong>Yes</strong> if the behaviour is present, otherwise select <strong>No</strong>.</p>
+
+            <form method="POST" action="{{ url_for('predict') }}">
+                <div class="field-row">
+                    <div>
+                        <label>1. Avoids eye contact?</label>
+                        <select name="A1_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>2. Prefers strict routine?</label>
+                        <select name="A2_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>3. Sensitive to sound or light?</label>
+                        <select name="A3_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>4. Difficulty understanding social cues?</label>
+                        <select name="A4_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>5. Repetitive behaviours?</label>
+                        <select name="A5_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>6. Struggles with communication?</label>
+                        <select name="A6_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>7. Avoids interactions?</label>
+                        <select name="A7_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>8. Limited interests?</label>
+                        <select name="A8_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>9. Unusual body movements?</label>
+                        <select name="A9_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>10. Sensory issues (touch, sound, texture)?</label>
+                        <select name="A10_Score">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+                <div>
+                    <label>AQ-10 total score (0–10)</label>
+                    <input type="number" name="result" min="0" max="10" step="0.1" value="5" required>
+                </div>
+
+                <div class="button-row">
+                    <button type="submit">Get prediction</button>
+                    <a class="btn btn-secondary" href="{{ url_for('personal_info') }}">Back to personal info</a>
+                    <a class="btn btn-secondary" href="{{ url_for('logout') }}">Exit</a>
+                </div>
+            </form>
+
+            {% if prediction %}
+                <div class="section-divider"></div>
+                <div class="result-banner" style="background: linear-gradient(135deg, {% if 'Yes' in prediction %}#f97373{% else %}#22c55e{% endif %}, #0f172a);">
+                    <h3>{{ prediction }}</h3>
+                    {% if confidence is not none %}
+                        <div class="result-meta">
+                            <span>Confidence: {{ confidence }}%</span>
+                        </div>
+                    {% endif %}
+                    <p style="font-size:12px; margin-top:6px; opacity:0.9;">
+                        Summary: Based on your answers, the model sees a {{ 'higher' if 'Yes' in prediction else 'lower' }} chance of autism-related patterns, with confidence {{ confidence if confidence is not none else 'N/A' }}%. Use this as an early signal.
+                    </p>
+                    <p>
+                        This is a screening conclusion, not a diagnosis. Please discuss any concerns with a qualified clinician.
+                    </p>
+                </div>
+            {% endif %}
+        
+        </div>
+
+        <div class="card-soft">
+            <h3>How to read the result</h3>
+            <ul class="info-list">
+                <li><strong>Yes</strong> result: the model detected a higher likelihood of autism‑related patterns.</li>
+                <li><strong>No</strong> result: the model detected a lower likelihood based on your answers.</li>
+                <li>The confidence score shows how sure the model is about this screening.</li>
+            </ul>
+            <p class="footer-note">
+                Always combine this with professional medical advice and your own observations.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

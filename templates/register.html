@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autism Prediction – Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-shell">
+    <div class="brand-hero">
+        <div class="brand-pill">
+            <span>Step 0</span>
+            <span>Create your account</span>
+        </div>
+        <div class="brand-title">Autism Prediction System</div>
+        <div class="brand-subtitle">Set up a simple account to begin the screening flow.</div>
+    </div>
+
+    <div class="layout-two">
+        <div class="card">
+            <h2>Register</h2>
+            <p class="muted">Only a username and password are required.</p>
+            <form method="POST" action="{{ url_for('register') }}">
+                <div>
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required>
+                </div>
+                <div class="button-row">
+                    <button type="submit">Create account</button>
+                    <a class="btn btn-secondary" href="{{ url_for('login') }}">Back to login</a>
+                </div>
+                {% if error %}
+                    <p class="muted" style="color:#b91c1c;margin-top:8px;">{{ error }}</p>
+                {% endif %}
+                {% if success %}
+                    <p class="muted" style="color:#15803d;margin-top:8px;">{{ success }}</p>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="card-soft">
+            <h3>Data & privacy</h3>
+            <ul class="info-list">
+                <li>Login details are stored locally with hashed passwords.</li>
+                <li>Information you enter is used only to generate screening results.</li>
+                <li>You can close the app at any time to end your session.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

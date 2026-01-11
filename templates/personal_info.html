@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autism Prediction – Personal Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-shell">
+    <div class="brand-hero">
+        <div class="brand-pill">
+            <span>Step 1</span>
+            <span>Personal information</span>
+        </div>
+        <div class="brand-title">Autism Prediction System</div>
+        <div class="brand-subtitle">
+            Tell us a little about the person you are screening. 
+        </div>
+    </div>
+
+    <div class="layout-two">
+        <div class="card">
+            <h2>Person details</h2>
+            <p class="muted">Fields marked with * are required for the screening model.</p>
+
+            <form method="POST" action="{{ url_for('personal_info') }}">
+                <div class="field-row">
+                    <div>
+                        <label for="age">Age *</label>
+                        <input id="age" type="number" name="age" min="2" max="60" required>
+                    </div>
+                    <div>
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" required>
+                            {% for g in gender_options %}
+                                <option value="{{ g }}">{{ g }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ethnicity">Ethnicity *</label>
+                        <select id="ethnicity" name="ethnicity" required>
+                            {% for e in ethnicity_options %}
+                                <option value="{{ e }}">{{ e }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="field-row">
+                    <div>
+                        <label for="jaundice">Jaundice at birth? *</label>
+                        <select id="jaundice" name="jaundice" required>
+                            {% for j in jaundice_options %}
+                                <option value="{{ j }}">{{ j }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="austim">Family member with autism? *</label>
+                        <select id="austim" name="austim" required>
+                            {% for a in austim_options %}
+                                <option value="{{ a }}">{{ a }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="contry_of_res">Country of residence *</label>
+                        <select id="contry_of_res" name="contry_of_res" required>
+                            {% for c in country_options %}
+                                <option value="{{ c }}">{{ c }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="field-row">
+                    <div>
+                        <label for="used_app_before">Used autism app before? *</label>
+                        <select id="used_app_before" name="used_app_before" required>
+                            {% for u in used_app_options %}
+                                <option value="{{ u }}">{{ u }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="relation">Relation to the person *</label>
+                        <select id="relation" name="relation" required>
+                            {% for r in relation_options %}
+                                <option value="{{ r }}">{{ r }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button type="submit">Continue to behavioural questions</button>
+                    <a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-soft">
+            <h3>Why we ask this</h3>
+            <ul class="info-list">
+                <li>Age, gender, and ethnicity help the model understand background patterns.</li>
+                <li>Birth history and family history are common risk factors in research.</li>
+                <li>Your relation helps interpret how the answers are given (parent, teacher, etc.).</li>
+            </ul>
+            <p class="footer-note">
+                Please answer as honestly as possible. You can go back and correct information later.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
