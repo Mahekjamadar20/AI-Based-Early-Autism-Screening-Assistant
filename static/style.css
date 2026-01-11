@@ -1,0 +1,9 @@
+@media (max-width: 800px) {
+    .layout-two {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .page-shell {
+        padding: 24px 14px;
+    }
+}
