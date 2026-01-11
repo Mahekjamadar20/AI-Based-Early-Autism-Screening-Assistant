@@ -65,9 +65,8 @@ def yes_no_to_binary(value: str) -> int:
 
 @app.route("/")
 def index():
-    if session.get("username"):
-        return redirect(url_for("personal_info"))
-    return redirect(url_for("login"))
+    return "Autism Screening App is running successfully"
+
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -210,5 +209,6 @@ def result():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
