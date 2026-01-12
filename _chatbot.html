@@ -1,0 +1,14 @@
+<!-- Chatbot Widget - Include this in all templates -->
+<button id="chatbot-toggle" title="Chat with Assistant">💬</button>
+<div id="chatbot-widget">
+    <div id="chatbot-header">
+        <h3>Ask Me Anything</h3>
+        <button id="chatbot-close">×</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Type your question...">
+        <button id="chatbot-send">→</button>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='chatbot.js') }}"></script>
